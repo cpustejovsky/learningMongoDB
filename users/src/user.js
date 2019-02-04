@@ -34,7 +34,16 @@ UserSchema.virtual('postCount').get(function() {
 /*
 this is the user class or model
 it does not represent any user in our application but the entire collection of data in the db
+next function is always called for middleware. 
 */
+
+UserSchema.pre('remove', function(next) {
+    //this prevents cyclical requires
+    const BlogPost = mongoose.model('blogPost');
+    BlogPost.remove({ _id: { $in: this.blogPosts } })
+        .then(() => next());
+});
+
 const User = mongoose.model('user', UserSchema);
 
 module.exports = User;

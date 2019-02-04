@@ -2,7 +2,7 @@ const assert = require('assert');
 const User = require('../src/user');
 
 describe('Virtual types', () => {
-    xit('postCount returns number of posts', (done) => {
+    it('postCount returns number of posts', (done) => {
         const joe = new User({
             name: 'Joe',
             posts: [{ title: 'Learning JavaScript'}]
@@ -10,6 +10,9 @@ describe('Virtual types', () => {
 
         joe.save()
             .then(() => User.findOne({ name: 'Joe' }))
-            .then
+            .then((user) => {
+                assert(joe.postCount === 1);
+                done();
+            })
     });
 });
