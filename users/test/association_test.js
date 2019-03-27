@@ -52,7 +52,7 @@ describe('Associations', () => {
     MongoDB needs us to speicify which model we are referencing
     */
 
-     it('saves a full relation graph', (done) => {
+    it('saves a full relation graph', (done) => {
         User.findOne({ name: 'Joe' })
             .populate({ 
                 path: 'blogPosts',

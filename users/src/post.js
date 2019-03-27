@@ -5,4 +5,4 @@ const PostSchema = new Schema({
     title: String
 });
 
-module.exports = PostSchema
+module.exports = PostSchema;
